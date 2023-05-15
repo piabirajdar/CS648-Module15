@@ -59,7 +59,7 @@ export default class EmployeeList extends React.Component {
         fetch('/api/employees')
         .then(response => response.json())
         .then(data => {
-            console.log('Total count of employees:', data.count)
+            console.log('Employee count:', data.count)
             data.employees.forEach(employee => {
                 employee.dateHired = new Date(employee.dateHired)
             })
@@ -78,7 +78,6 @@ export default class EmployeeList extends React.Component {
             newEmployee.employee.dateHired = new Date(newEmployee.employee.dateHired)
             const newEmployees = this.state.employees.concat(newEmployee.employee)
             this.setState({ employees: newEmployees })
-            console.log('Total count of employees:', newEmployees.length)
         })        
         .catch(err => {console.log(err)})
     }
@@ -86,7 +85,7 @@ export default class EmployeeList extends React.Component {
         fetch(`/api/employees/${id}`, { method: 'DELETE' })
         .then(response => {
             if(!response.ok) {
-                console.log('Failed to delete an employee.')
+                console.log('Employee deletion failed.')
             } else {
                 this.loadData()
             }

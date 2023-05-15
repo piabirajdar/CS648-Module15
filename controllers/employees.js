@@ -25,7 +25,6 @@ const updateEmployee = (req, res) => {
   res.send("Update an existing employee");
 };
 const deleteEmployee = async (req, res) => {
-  // res.send('Delete an employee')
   try {
     const employee = await Employee.findByIdAndDelete(req.params.id);
     if (!employee) {
